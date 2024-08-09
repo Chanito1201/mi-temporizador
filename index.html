@@ -1,52 +1,31 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>Flip Example Preset</title>
 
-        <link rel="stylesheet" href="flip.min.css">
+        <link rel="stylesheet" href="../dist/flip.min.css" />
     </head>
-    <body style="background-color: transparent;">
+    <body>
         <!-- START OF FLIP EXAMPLE PRESET -->
 
         <style>
             .tick {
                 padding-bottom: 1em;
                 font-size: 1rem;
-                font-family: Arial, sans-serif; /* Fuente ajustada */
-                color: #cccccc; /* Color de los números */
-                font-weight: bold; /* Grosor ajustado */
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+                    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
             }
 
             .tick-label {
                 font-size: 0.375em;
                 text-align: center;
-                color: #4b4f58; /* Color ajustado para las etiquetas */
-                font-weight: bold; /* Grosor ajustado para ser más delgadas */
-                font-family: 'Arial', sans-serif; /* Asegurando una fuente simple y delgada */
-                letter-spacing: 1px; /* Espaciado ligero entre letras para mejorar la legibilidad */
             }
 
             .tick-group {
                 margin: 0 0.25em;
                 text-align: center;
-            }
-
-            /* Estilos para los contenedores de los números */
-            .tick-flip-panel {
-                background-color: #333333; /* Color oscuro para los paneles de los números */
-                border-radius: 5px; /* Bordes redondeados para los contenedores */
-            }
-
-            /* Estilo para la parte superior del panel de números */
-            .tick-flip-panel-front {
-                background-color: #333333; /* Color para la parte delantera del contenedor */
-            }
-
-            /* Estilo para la parte trasera del panel de números */
-            .tick-flip-panel-back {
-                background-color: #333333; /* Color para la parte trasera del contenedor */
             }
         </style>
 
@@ -72,37 +51,36 @@
 
         <script>
             function handleTickInit(tick) {
-                // Establecer etiquetas en español
-                var locale = {
-                    YEAR_PLURAL: 'Años',
-                    YEAR_SINGULAR: 'Año',
-                    MONTH_PLURAL: 'Meses',
-                    MONTH_SINGULAR: 'Mes',
-                    WEEK_PLURAL: 'Semanas',
-                    WEEK_SINGULAR: 'Semana',
-                    DAY_PLURAL: 'Días',
-                    DAY_SINGULAR: 'Día',
-                    HOUR_PLURAL: 'Horas',
-                    HOUR_SINGULAR: 'Hora',
-                    MINUTE_PLURAL: 'Minutos',
-                    MINUTE_SINGULAR: 'Minuto',
-                    SECOND_PLURAL: 'Segundos',
-                    SECOND_SINGULAR: 'Segundo',
-                    MILLISECOND_PLURAL: 'Milisegundos',
-                    MILLISECOND_SINGULAR: 'Milisegundo'
-                };
+                // Uncomment to set labels to different language ( in this case Dutch )
+                /*
+        var locale = {
+            YEAR_PLURAL: 'Jaren',
+            YEAR_SINGULAR: 'Jaar',
+            MONTH_PLURAL: 'Maanden',
+            MONTH_SINGULAR: 'Maand',
+            WEEK_PLURAL: 'Weken',
+            WEEK_SINGULAR: 'Week',
+            DAY_PLURAL: 'Dagen',
+            DAY_SINGULAR: 'Dag',
+            HOUR_PLURAL: 'Uren',
+            HOUR_SINGULAR: 'Uur',
+            MINUTE_PLURAL: 'Minuten',
+            MINUTE_SINGULAR: 'Minuut',
+            SECOND_PLURAL: 'Seconden',
+            SECOND_SINGULAR: 'Seconde',
+            MILLISECOND_PLURAL: 'Milliseconden',
+            MILLISECOND_SINGULAR: 'Milliseconde'
+        };
 
-                for (var key in locale) {
-                    if (!locale.hasOwnProperty(key)) {
-                        continue;
-                    }
-                    tick.setConstant(key, locale[key]);
-                }
+        for (var key in locale) {
+            if (!locale.hasOwnProperty(key)) { continue; }
+            tick.setConstant(key, locale[key]);
+        }
+        */
 
-                // Aquí defines la fecha en la que el contador debe detenerse
-                var endDate = new Date('2024-11-22T17:00:00');
+                var nextYear = new Date().getFullYear() + 1;
 
-                Tick.count.down(endDate).onupdate = function (value) {
+                Tick.count.down(nextYear + '-01-01').onupdate = function (value) {
                     tick.value = value;
                 };
             }
@@ -110,6 +88,6 @@
 
         <!-- END OF FLIP EXAMPLE PRESET -->
 
-        <script src="flip.min.js"></script>
+        <script src="../dist/flip.min.js"></script>
     </body>
 </html>
