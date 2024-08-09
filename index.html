@@ -14,13 +14,14 @@
             .tick {
                 padding-bottom: 1em;
                 font-size: 1rem;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
-                    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+                font-family: Arial, sans-serif; /* Fuente ajustada */
+                color: #fff; /* Color ajustado */
             }
 
             .tick-label {
                 font-size: 0.375em;
                 text-align: center;
+                color: #fff; /* Color ajustado para las etiquetas */
             }
 
             .tick-group {
@@ -79,7 +80,7 @@
                 }
 
                 // Aquí defines la fecha en la que el contador debe detenerse
-                var endDate = new Date('2024-08-09T00:00:00');
+                var endDate = new Date('2024-11-22T17:00:00');
 
                 Tick.count.down(endDate).onupdate = function (value) {
                     tick.value = value;
