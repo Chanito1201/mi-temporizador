@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizador de Cuenta Regresiva</title>
+    <!-- Agrega cualquier CSS que necesites aquí -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #flip-clock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flipper {
+            display: inline-block;
+            font-size: 2rem;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Aquí se mostrará el reloj -->
+    <div id="flip-clock"></div>
+
+    <!-- JS del Temporizador -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ResponsiveFlipper/1.0.0/responsiveflipper.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var flipper = new ResponsiveFlipper({
+                selector: '#flip-clock',
+                startDate: new Date(),
+                endDate: new Date('2024-11-01T16:00:00'),
+                separator: true,
+                showDay: true,
+                showHour: true,
+                showMinute: true,
+                showSecond: true,
+            });
+        });
+    </script>
+</body>
+</html>
