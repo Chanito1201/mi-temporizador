@@ -51,6 +51,33 @@
 
         <script>
             function handleTickInit(tick) {
+                // Establecer etiquetas en español
+                var locale = {
+                    YEAR_PLURAL: 'Años',
+                    YEAR_SINGULAR: 'Año',
+                    MONTH_PLURAL: 'Meses',
+                    MONTH_SINGULAR: 'Mes',
+                    WEEK_PLURAL: 'Semanas',
+                    WEEK_SINGULAR: 'Semana',
+                    DAY_PLURAL: 'Días',
+                    DAY_SINGULAR: 'Día',
+                    HOUR_PLURAL: 'Horas',
+                    HOUR_SINGULAR: 'Hora',
+                    MINUTE_PLURAL: 'Minutos',
+                    MINUTE_SINGULAR: 'Minuto',
+                    SECOND_PLURAL: 'Segundos',
+                    SECOND_SINGULAR: 'Segundo',
+                    MILLISECOND_PLURAL: 'Milisegundos',
+                    MILLISECOND_SINGULAR: 'Milisegundo'
+                };
+
+                for (var key in locale) {
+                    if (!locale.hasOwnProperty(key)) {
+                        continue;
+                    }
+                    tick.setConstant(key, locale[key]);
+                }
+
                 // Aquí defines la fecha en la que el contador debe detenerse
                 var endDate = new Date('2024-11-22T17:00:00');
 
