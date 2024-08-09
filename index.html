@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>Flip Example Preset</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flip Clock en Español</title>
 
         <link rel="stylesheet" href="flip.min.css" />
     </head>
     <body>
-        <!-- START OF FLIP EXAMPLE PRESET -->
+        <!-- START OF FLIP CLOCK EXAMPLE -->
 
         <style>
             .tick {
@@ -51,42 +51,42 @@
 
         <script>
             function handleTickInit(tick) {
-                // Uncomment to set labels to different language ( in this case Dutch )
-                /*
-        var locale = {
-            YEAR_PLURAL: 'Jaren',
-            YEAR_SINGULAR: 'Jaar',
-            MONTH_PLURAL: 'Maanden',
-            MONTH_SINGULAR: 'Maand',
-            WEEK_PLURAL: 'Weken',
-            WEEK_SINGULAR: 'Week',
-            DAY_PLURAL: 'Dagen',
-            DAY_SINGULAR: 'Dag',
-            HOUR_PLURAL: 'Uren',
-            HOUR_SINGULAR: 'Uur',
-            MINUTE_PLURAL: 'Minuten',
-            MINUTE_SINGULAR: 'Minuut',
-            SECOND_PLURAL: 'Seconden',
-            SECOND_SINGULAR: 'Seconde',
-            MILLISECOND_PLURAL: 'Milliseconden',
-            MILLISECOND_SINGULAR: 'Milliseconde'
-        };
+                // Configurar etiquetas en español
+                var locale = {
+                    YEAR_PLURAL: 'años',
+                    YEAR_SINGULAR: 'año',
+                    MONTH_PLURAL: 'meses',
+                    MONTH_SINGULAR: 'mes',
+                    WEEK_PLURAL: 'semanas',
+                    WEEK_SINGULAR: 'semana',
+                    DAY_PLURAL: 'días',
+                    DAY_SINGULAR: 'día',
+                    HOUR_PLURAL: 'hs',
+                    HOUR_SINGULAR: 'hs',
+                    MINUTE_PLURAL: 'min',
+                    MINUTE_SINGULAR: 'min',
+                    SECOND_PLURAL: 'seg',
+                    SECOND_SINGULAR: 'seg',
+                    MILLISECOND_PLURAL: 'miliseg',
+                    MILLISECOND_SINGULAR: 'miliseg'
+                };
 
-        for (var key in locale) {
-            if (!locale.hasOwnProperty(key)) { continue; }
-            tick.setConstant(key, locale[key]);
-        }
-        */
+                for (var key in locale) {
+                    if (locale.hasOwnProperty(key)) {
+                        tick.setConstant(key, locale[key]);
+                    }
+                }
 
-                var nextYear = new Date().getFullYear() + 1;
+                // Fecha y hora de finalización: 22 de noviembre de 2024 a las 5 PM
+                var endDate = new Date('2024-11-22T17:00:00');
 
-                Tick.count.down(nextYear + '-01-01').onupdate = function (value) {
+                Tick.count.down(endDate).onupdate = function (value) {
                     tick.value = value;
                 };
             }
         </script>
 
-        <!-- END OF FLIP EXAMPLE PRESET -->
+        <!-- END OF FLIP CLOCK EXAMPLE -->
 
         <script src="flip.min.js"></script>
     </body>
