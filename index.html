@@ -1,70 +1,93 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Temporizador</title>
-    <!-- Incluye el CSS -->
-    <style>
-        /* Ajustes generales */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: transparent;
-            font-family: Arial, sans-serif;
-            color: #fff;
-        }
-        #flip-clock {
-            text-align: center;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-        }
-        .clock {
-            margin: 0;
-            transform: scale(0.8);
-        }
-        @media (max-width: 768px) {
-            .clock {
-                transform: scale(0.6);
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Flip Example Preset</title>
+
+        <link rel="stylesheet" href="../dist/flip.min.css" />
+    </head>
+    <body>
+        <!-- START OF FLIP EXAMPLE PRESET -->
+
+        <style>
+            .tick {
+                padding-bottom: 1em;
+                font-size: 1rem;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+                    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
             }
-        }
-        @media (max-width: 480px) {
-            .clock {
-                transform: scale(0.4);
+
+            .tick-label {
+                font-size: 0.375em;
+                text-align: center;
             }
-        }
-    </style>
-</head>
-<body>
-    <div id="flip-clock" class="clock"></div>
-    <!-- Incluye el JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
-    <script>
-        // Código de JavaScript para el temporizador
-        var clock = $('#flip-clock').FlipClock({
-            countdown: true,
-            autoStart: true,
-            clockFace: 'DailyCounter',
-            callbacks: {
-                stop: function() {
-                    alert('El evento ha terminado!');
-                }
+
+            .tick-group {
+                margin: 0 0.25em;
+                text-align: center;
             }
-        });
-        var targetDate = new Date('November 1, 2024 16:00:00');
-        var now = new Date();
-        var remainingTime = (targetDate.getTime() - now.getTime()) / 1000;
-        clock.setTime(remainingTime);
-        clock.start();
-    </script>
-</body>
+        </style>
+
+        <div class="tick" data-did-init="handleTickInit">
+            <div
+                data-repeat="true"
+                data-layout="horizontal center fit"
+                data-transform="preset(d, h, m, s) -> delay"
+            >
+                <div class="tick-group">
+                    <div
+                        data-key="value"
+                        data-repeat="true"
+                        data-transform="pad(00) -> split -> delay"
+                    >
+                        <span data-view="flip"></span>
+                    </div>
+
+                    <span data-key="label" data-view="text" class="tick-label"></span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function handleTickInit(tick) {
+                // Uncomment to set labels to different language ( in this case Dutch )
+                /*
+        var locale = {
+            YEAR_PLURAL: 'Jaren',
+            YEAR_SINGULAR: 'Jaar',
+            MONTH_PLURAL: 'Maanden',
+            MONTH_SINGULAR: 'Maand',
+            WEEK_PLURAL: 'Weken',
+            WEEK_SINGULAR: 'Week',
+            DAY_PLURAL: 'Dagen',
+            DAY_SINGULAR: 'Dag',
+            HOUR_PLURAL: 'Uren',
+            HOUR_SINGULAR: 'Uur',
+            MINUTE_PLURAL: 'Minuten',
+            MINUTE_SINGULAR: 'Minuut',
+            SECOND_PLURAL: 'Seconden',
+            SECOND_SINGULAR: 'Seconde',
+            MILLISECOND_PLURAL: 'Milliseconden',
+            MILLISECOND_SINGULAR: 'Milliseconde'
+        };
+
+        for (var key in locale) {
+            if (!locale.hasOwnProperty(key)) { continue; }
+            tick.setConstant(key, locale[key]);
+        }
+        */
+
+                var nextYear = new Date().getFullYear() + 1;
+
+                Tick.count.down(nextYear + '-01-01').onupdate = function (value) {
+                    tick.value = value;
+                };
+            }
+        </script>
+
+        <!-- END OF FLIP EXAMPLE PRESET -->
+
+        <script src="../dist/flip.min.js"></script>
+    </body>
 </html>
